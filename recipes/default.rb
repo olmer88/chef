@@ -1,5 +1,3 @@
-#
-# Cookbook:: interfaces
-# Recipe:: default
-#
-# Copyright:: 2020, The Authors, All Rights Reserved.
+file '/tmp/interfaces.txt' do
+  content node["network"]["interfaces"].to_s
+end

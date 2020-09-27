@@ -1,11 +1,11 @@
+package 'httpd' do
+  package_name 'httpd'
+end
+
 template "/var/www/html/index.html" do
   source 'index.html.erb'
   mode '0755'
   notifies :restart, 'service[httpd]'
-end
-
-package 'httpd' do
-  package_name 'httpd'
 end
 
 service 'httpd' do

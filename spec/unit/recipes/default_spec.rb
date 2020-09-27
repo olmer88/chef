@@ -26,4 +26,23 @@ describe 'interfaces::default' do
       expect { chef_run }.to_not raise_error
     end
   end
+
+  let(:chef_run) { ChefSpec::SoloRunner.new(platform: 'centos', version: '8').converge('interfaces') }
+
+  it 'installs httpd' do
+    expect(chef_run).to install_package('httpd')
+  end
+  
+  it 'creates index.html template' do
+    expect(chef_run).to create_template('/var/www/html/index.html')
+  end
+
+  it 'starts httpd service' do
+    expect(chef_run).to start_service('httpd')
+  end
+
+  it 'creates interfaces.txt file' do
+    expect(chef_run).to create_file('/tmp/interfaces.txt')
+  end
+
 end
